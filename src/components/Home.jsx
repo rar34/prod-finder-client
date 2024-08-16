@@ -21,9 +21,8 @@ const Home = () => {
       }, []);
 
 
-    const handleSearch = ({ keyword, startDate, endDate }) => {
+    const handleSearch = ({ keyword }) => {
 
-        console.log(keyword, startDate, endDate)
         let filtered = products;
 
         if (keyword) {
@@ -32,18 +31,8 @@ const Home = () => {
             );
         }
 
-        if (startDate) {
-            filtered = filtered.filter(p => new Date(p.ProductCreationDate) >= new Date(startDate));
-        }
-
-        if (endDate) {
-            filtered = filtered.filter(p => new Date(p.ProductCreationDate) <= new Date(endDate));
-        }
-
         setProducts(filtered);
         keyword = '';
-        startDate = '';
-        endDate = '';
     };
 
 
