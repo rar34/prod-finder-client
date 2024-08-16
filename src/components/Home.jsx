@@ -5,30 +5,21 @@ import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
     const { count } = useLoaderData();
     const itemsPerPage = 10;
     const numberOfPages = Math.ceil(count / itemsPerPage)
 
-    // const pages = [];
-    // for(let i=0; i<numberOfPages; i++){
-    //     pages.push(i)
-    // }
+
 
     const pages = [...Array(numberOfPages).keys()]
-    console.log(pages)
+    // console.log(pages)
 
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/products');
-                setProducts(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchProducts();
+        fetch(`http://localhost:5000/products?page=${currentPage}&size=${itemsPerPage}`)
+            .then(res => res.json())
+            .then(data => setProducts(data))
     }, []);
 
 
@@ -65,6 +56,16 @@ const Home = () => {
         setProducts(sorted);
     };
 
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNextPage = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
 
 
 
@@ -106,13 +107,16 @@ const Home = () => {
                     )
                 }
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center">
+                <button onClick={handlePrevPage} className="btn text-green-600 btn-sm">Previous</button>
                 {
-                    pages?.map((p,i) =>
-                        <button className="btn btn-sm btn-success text-white my-6 mr-3" key={i}>{p}</button>
+                    pages?.map((p, i) =>
+                        <button onClick={() => setCurrentPage(p)} className={`btn btn-sm btn-success text-white my-6 mx-1 ${currentPage === p && 'bg-orange-400 border-0'}`} key={i}>{p + 1}</button>
                     )
                 }
+                <button onClick={handleNextPage} className="btn text-green-600 btn-sm">Next</button>
             </div>
+            <p>current page: {currentPage + 1}</p>
         </div>
     );
 };
