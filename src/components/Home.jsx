@@ -7,7 +7,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const { count } = useLoaderData();
-    const itemsPerPage = 10;
+    const itemsPerPage = 6;
     const numberOfPages = Math.ceil(count / itemsPerPage)
 
 
@@ -20,7 +20,7 @@ const Home = () => {
         fetch(`http://localhost:5000/products?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, []);
+    }, [currentPage]);
 
 
     const handleSearch = ({ keyword }) => {
