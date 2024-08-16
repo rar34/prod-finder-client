@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
-
     const [products, setProducts] = useState([]);
+    const { count } = useLoaderData();
+    const itemsPerPage = 10;
+    const numberOfPages = Math.ceil(count / itemsPerPage)
 
-   
+    // const pages = [];
+    // for(let i=0; i<numberOfPages; i++){
+    //     pages.push(i)
+    // }
+
+    const pages = [...Array(numberOfPages).keys()]
+    console.log(pages)
+
+
     useEffect(() => {
         const fetchProducts = async () => {
-          try {
-            const response = await axios.get('http://localhost:5000/products');
-            setProducts(response.data);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                const response = await axios.get('http://localhost:5000/products');
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
-    
+
         fetchProducts();
-      }, []);
+    }, []);
 
 
     const handleSearch = ({ keyword }) => {
@@ -92,6 +103,13 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
+                    )
+                }
+            </div>
+            <div className="flex justify-center">
+                {
+                    pages?.map((p,i) =>
+                        <button className="btn btn-sm btn-success text-white my-6 mr-3" key={i}>{p}</button>
                     )
                 }
             </div>
