@@ -1,6 +1,5 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 
 import {
@@ -9,6 +8,9 @@ import {
 } from "react-router-dom";
 import Main from './components/Main.jsx';
 import Home from './components/Home.jsx';
+import AuthProvider from './providers/AuthProvider.jsx';
+import Login from './components/login.jsx';
+import Register from './components/Register.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,16 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element:<Home></Home>,
-        loader: ()=> fetch('http://localhost:5000/productsCount')
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:5000/productsCount')
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
       }
     ]
   },
@@ -26,6 +36,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

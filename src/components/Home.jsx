@@ -72,25 +72,6 @@ const Home = () => {
     }
 
 
-    // const filteredProducts = products.filter(product => {
-    //     switch (selectedBrand) {
-    //         case 'VisionX':
-    //             return product.BrandName === 'VisionX';
-    //         case 'PowerTech':
-    //             return product.BrandName === 'PowerTech';
-    //         case 'MobiLux':
-    //             return product.BrandName === 'MobiLux';
-    //         case 'CapturePro':
-    //             return product.BrandName === 'CapturePro';
-    //         case 'SecureCam':
-    //             return product.BrandName === 'SecureCam';
-    //         case 'QuietSound':
-    //             return product.BrandName === 'QuietSound';
-    //         default:
-    //             return true;
-    //     }
-    // });
-
     const filterByPrice = (price) => {
         switch (selectedPriceRange) {
             case '< $100':
@@ -120,20 +101,7 @@ const Home = () => {
             <div className="text-center flex flex-col gap-4 items-center justify-center mb-10">
                 <SearchBar onSearch={handleSearch} onSort={handleSort}></SearchBar>
                 <div className='flex border border-green-600 p-6 rounded-lg flex-col gap-2 lg:flex-row'>
-                    {/* <input
-                        className='input input-bordered mx-1'
-                        type="text"
-                        placeholder="Min price"
-
-                        onChange={(e) => setKeyword(e.target.value)}
-                    />
-                    <input
-                        className='input input-bordered mx-1'
-                        type="text"
-                        placeholder="Max price"
-
-                        onChange={(e) => setKeyword(e.target.value)}
-                    /> */}
+                    
                     <select onChange={(e) => setSelectedPriceRange(e.target.value)} className='select select-success mx-2'>
                         <option value="">All</option>
                         <option value="< $100">Less than $100</option>
