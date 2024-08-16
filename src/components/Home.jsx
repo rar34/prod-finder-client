@@ -22,15 +22,23 @@ const Home = () => {
                                     alt={product.ProductName} />
                             </figure>
                             <div className="card-body">
-                                <div className="flex justify-between">
-                                    <h2 className="card-title">{product.ProductName}</h2>
-                                    <h2 className="card-title">Price: <span className="text-gray-500">${product.Price}</span></h2>
+                                <div className="flex text-2xl font-semibold justify-between">
+                                    <h2 className="">{product.ProductName}</h2>
+                                    <h2 className="">Price: <span className="text-gray-500">${product.Price}</span></h2>
                                 </div>
-                                <h2 className="card-title">Brand: <span className="text-gray-500">{product.BrandName}</span></h2>
+                                <div className="flex text-lg font-medium justify-between">
+                                    <h2 className="">Brand: <span className="text-gray-500">{product.BrandName}</span></h2>
+                                    <h2 className="">Category: <span className="text-gray-500">{product.Category}</span></h2>
+                                </div>
                                 <hr className="my-4" />
                                 <p>{product.Description}</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-outline btn-success">Buy Now</button>
+                                <hr className="my-4" />
+                                <div className="flex text-lg font-medium justify-between">
+                                    <h2 className="">Ratings: <span className="text-gray-500">{product.Ratings}</span></h2>
+                                    <h2 className="">Added at: <span className="text-gray-500">{product.ProductCreationDate}</span></h2>
+                                </div>
+                                <div className="">
+                                    <button className="btn w-full mt-6 btn-outline btn-success">Buy Now</button>
                                 </div>
                             </div>
                         </div>
