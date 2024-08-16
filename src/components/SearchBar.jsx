@@ -42,9 +42,9 @@ function SearchBar({ onSearch, onSort  }) {
             <button className='btn text-white bg-[#6F42C1]' onClick={handleSearch}>Search</button>
             <select className='select select-primary ml-4' value={sortCriteria} onChange={handleSortChange}>
                 <option disabled value="">Sort By</option>
-                <option value="mostRegistered">Price: Low to High</option>
-                <option value="campFees">Price: High to Low</option>
-                <option value="alphabetical">Date added: Newest First</option>
+                <option value="lowToHigh">Price: Low to High</option>
+                <option value="highToLow">Price: High to Low</option>
+                <option value="newestFirst">Date added: Newest First</option>
             </select>
         </div>
     );

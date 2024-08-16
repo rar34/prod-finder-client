@@ -6,13 +6,7 @@ const Home = () => {
 
     const [products, setProducts] = useState([]);
 
-    // const [filteredProducts, setFilteredProducts] = useState(products)
-
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/products")
-    //         .then(res => res.json())
-    //         .then(data => setProducts(data))
-    // }, [])
+   
     useEffect(() => {
         const fetchProducts = async () => {
           try {
@@ -53,12 +47,31 @@ const Home = () => {
     };
 
 
+    const handleSort = (criteria) => {
+        let sorted = [...products];
+        switch (criteria) {
+            case 'lowToHigh':
+                sorted.sort((a, b) => a.Price - b.Price);
+                break;
+            case 'highToLow':
+                sorted.sort((a, b) => b.Price - a.Price);
+                break;
+            case 'newestFirst':
+                sorted.sort((a, b) => new Date(b.ProductCreationDate) - new Date(a.ProductCreationDate));
+                break;
+            default:
+                break;
+        }
+        setProducts(sorted);
+    };
+
+
 
 
     return (
         <div className="container mx-auto my-14">
             <div className="text-center flex flex-col md:flex-row gap-4 items-center justify-center mb-10">
-                <SearchBar onSearch={handleSearch}></SearchBar>
+                <SearchBar onSearch={handleSearch} onSort={handleSort}></SearchBar>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
