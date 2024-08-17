@@ -1,8 +1,20 @@
-# React + Vite
+# prodFinder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reliable website for searching your desire products.
 
-Currently, two official plugins are available:
+<h2>Features</h2>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Searching functionality based on products name
+- Sorting functionality based on price such as low to high and high to low and also by dated added newest first.
+- Filter functionality based on brand name, category and price range.
+
+<br />
+
+To run this project locally:
+- git clone https://github.com/rar34/prod-finder-client.git
+- Open this with VS code
+- npm install
+- Connect with backend
+- enjoy
+
+Backend  link: https://github.com/rar34/prod-finder-server.git
